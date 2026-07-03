@@ -1,0 +1,30 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+
+# Virtual env
+venv/
+.venv/
+
+# IDE
+.vscode/
+.idea/
+
+# Pytest
+.pytest_cache/
+
+# TESPy generated caches (auto-regenerated, do not commit)
+.tespy_cache/
+base_design_*/
+
+# Simulation output CSVs (large, gitignored)
+results/
+*.csv
+!TMY.csv
+
+# OS
+Thumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+*.log
