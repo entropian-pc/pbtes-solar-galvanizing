@@ -110,76 +110,12 @@ Discount rate: 8%, lifetime: 25 yr.
 
 ## 4. What We Need — Tasks by Coauthor
 
----
+To ensure the technical robustness of the final article, we invite each coauthor to collaborate on the following specific areas:
 
-### Eduardo González-Mora — PTC Model Verification
-
-**Background**: The PTC model in `pbtes/components/ptc_field.py` is a Python re-implementation of the TESPy model originally developed by Eduardo. It uses:
-- Net power: `Q_ptc = A [E · η_opt · K(θ) − q_losses]`
-- IAM: `K(θ) = 1 + i₁θ + i₂θ²` with i₁ = −1.59×10⁻³, i₂ = 9.77×10⁻⁵
-- Receiver losses: `q_losses = c₁ΔT + c₂ΔT²` with c₁ = 0.0622 W/m²K, c₂ = 0.00023 W/m²K²
-- Design point: DNI = 900 W/m², T_amb = 20°C, AOI = 20°, η_opt = 0.816
-- Offdesign: TESPy solves for mass flow and outlet temperature under fixed boundary conditions
-
-**We need your review of**:
-1. Are the optical and thermal loss coefficients correct for the intended collector model?
-2. Does the offdesign formulation in TESPy correctly represent how the original model was intended to behave?
-3. Are there additional loss terms (e.g., end losses, shadowing) that should be included or that are already accounted for in η_opt?
-
-*Output requested*: Written comments on `ptc_field.py` and/or the equations in §3.1 of the manuscript draft.
-
----
-
-### Ignacio Calderón-Vásquez — Economic Methodology Review
-
-**Background**: The LCOH calculation is built on capital cost correlations, CEPCI escalation, and a simple CRF annualization. There are two active inconsistencies that need resolution before the final run:
-
-1. **PTC cost**: manuscript uses $200/m² vs. ECONOMIC_METHODOLOGY.md recommends $300/m² (Akar & Kurup 2025).
-2. **Electricity tariff**: manuscript uses $0.10/kWh vs. $0.17/kWh (Chilean industrial tariff, 2024).
-3. **HX cost model**: currently a fixed stub of $50,000/unit regardless of duty. Needs a UA-based cost correlation so it scales with tank size and aperture area. This is important because at large tank volumes, the HX is a significant fraction of CAPEX.
-
-**We need your input on**:
-1. Which cost values are appropriate for the Santiago/Chile context and publication year?
-2. Is there a published UA-based HX cost correlation we should use?
-3. Are there other economic assumptions you'd flag as inconsistent with the literature?
-
-*Output requested*: Revised parameter table and/or co-writing §Economic Analysis and the economic sensitivity section.
-
----
-
-### Felipe Battisti — PBTES Correlation Assessment
-
-**Background**: The packed-bed model uses the **Wakao-Kaguei correlation**:
-
-> Nu = 2.0 + 1.1 Re^0.6 Pr^(1/3)
-
-This was validated for air at Re_p = 15–8,500. At our baseline Solar Salt conditions (SM=1, low flow rate), **Re_p < 1** — well outside the validated range. We use it as the best available single-phase correlation but acknowledge this as an open limitation.
-
-Full set of questions in `context/coauthor_felipe_pbtes_request.md`. Summary:
-1. Is Wakao-Kaguei defensible for Solar Salt at Re < 1? What uncertainty band should we attach to h_sf?
-2. Is there a more appropriate correlation for liquid-metal or high-Pr fluid packed beds at low Re?
-3. Does the single-phase model (no radiation term) introduce meaningful error at 500°C+?
-4. Is there an appropriate wall-HTC correction for the tank boundary nodes?
-
-**Impact**: The HTC directly affects thermocline sharpness, charging effectiveness, and thus solar fraction. A 50% change in h_sf would propagate into the results — if Wakao-Kaguei over- or under-predicts by that margin at Re < 1, we need to know before reporting results.
-
-*Output requested*: Written assessment for §3.2 (validation paragraph). If a better correlation is available and straightforward to implement, we can incorporate it into the model before the final run.
-
----
-
-### Rodrigo Escobar & José M. Cardemil — Supervision & Open Decisions
-
-The following questions need a group decision before we finalize the simulation configuration and write §5 Results:
-
-1. **Target journal** — The manuscript currently has *Energy Conversion and Management* in the preamble; the planning documents list *Journal of Energy Storage*, *Energy*, and *Solar Energy*. Word limits, figure counts, and supplementary rules differ.
-
-2. **LCOH U-shape boundary** — At the baseline aperture, LCOH continues decreasing at D = 20 m (the largest simulated tank). Options: (a) report "no minimum found within the practical range" and bound by construction/land cost arguments; (b) extend the sweep to D = 22–25 m to locate the minimum explicitly.
-
-3. **SD geometry density** — The SD D×H grid has 22 points vs. 63 for PI. After re-runs, is this sufficient for a contour figure of comparable resolution, or should we add SD points?
-
-4. **Manuscript framing** — Should the paper emphasize the PI vs. SD topology comparison as the primary contribution (novel system-level study for industrial solar galvanizing), or should PBTES optimization (D×H geometry, robustness) be the primary message?
-
-*Output requested*: Guidance on the above decisions; high-level review of §1 Introduction framing once available.
+- **Eduardo González-Mora**: Assess if his PTC model is well implemented in Python (`pbtes/components/ptc_field.py`), and help define/refine the economic cost correlation for it.
+- **Ignacio Calderón-Vásquez**: Help review the thermodynamic and economic methodology sections, and assist in validating and finalizing the actual economic parameters (cost coefficients, tariffs, and LCOH formulation).
+- **Felipe Battisti**: Take over the PBTES model block, proposing or adjusting it to a model specifically appropriate for molten salt PBTES, and evaluate if the current physical assumptions and heat transfer correlations (such as Wakao-Kaguei at very low Reynolds numbers) make physical sense.
+- **Rodrigo Escobar & José M. Cardemil**: Provide general supervision of the overall methodology, publication scope, and framing of the results.
 
 ---
 
