@@ -1,7 +1,20 @@
-﻿# PBTES + Solar Galvanizing — Coauthor Collaboration Report
+# PBTES + Solar Galvanizing — Coauthor Collaboration Report
 *Ian Wolde | July 2026 | Internal document — not for submission*
 
 > **Note on results**: All quantitative outputs are **preliminary**. Once each coauthor has reviewed and provided their input, the full simulation suite will be re-run with corrected models, updated parameters, and validated correlations. The numbers shown here are for orientation only.
+
+> **AI disclosure**: This document and the accompanying email were drafted with assistance from Claude (Anthropic). Technical content, scientific criteria, and editorial decisions are the responsibility of the author.
+
+---
+
+## Resources
+
+| Item | Location |
+|------|----------|
+| **Manuscript (PDF)** | Attached to the invitation email |
+| **Code + figures + methodology docs** | https://github.com/entropian-pc/pbtes-solar-galvanizing |
+| **Manuscript source (LaTeX)** | `paper/Manuscript_v3.tex` in the repo |
+| **This report** | `COAUTHOR_REPORT.md` in the repo |
 
 ---
 
