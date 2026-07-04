@@ -24,7 +24,7 @@
 \usepackage{physics}
 \usepackage{cleveref}
 \usepackage{graphicx}
-\graphicspath{{06_figures/}}
+\graphicspath{{figures/}}
 \usepackage{enumitem}
 \usepackage{longtable}
 \usepackage{float}
@@ -130,6 +130,25 @@ Thermal energy storage (TES) systems can increase the technical and economic via
 \label{sec:sys_desc}
 
 The present study evaluates a solar thermal plant designed to supply industrial process heat to a hot-dip galvanizing facility. The plant comprises three main subsystems, as illustrated in Fig.~\ref{fig:plant_layout}: a parabolic trough collector (PTC) solar field, a packed bed thermal energy storage (PBTES) unit, and a dynamic zinc galvanizing bath. Two principal configurations are compared:
+
+\begin{figure*}[!htbp]
+    \centering
+    \begin{subfigure}[b]{0.49\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{fig01a_layout_pi.png}
+        \caption{Parallel / Indirect (PI) Configuration}
+        \label{fig:layout_pi}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.49\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{fig01b_layout_sd.png}
+        \caption{Series / Direct (SD) Configuration}
+        \label{fig:layout_sd}
+    \end{subfigure}
+    \caption{Schematic diagrams of the two plant topologies compared in this study: (a) Parallel/Indirect (PI) baseline layout showing primary, secondary charging, secondary discharge, and process loops; (b) Series/Direct (SD) configuration showing charging path (Mode 1) and parallel discharge path with analytical mixing valve (Mode 3).}
+    \label{fig:plant_layout}
+\end{figure*}
 
 \begin{enumerate}[label=\textbf{(\Alph*)}, leftmargin=*]
     \item \textbf{Parallel / Indirect (PI)} --- The baseline layout. The heat transfer fluid (HTF) leaving the PTC field can split between a process heat exchanger and a dedicated charging heat exchanger (HX) that couples the primary loop to a secondary TES loop. A separate discharge HX connects the storage loop to the process preheater. This configuration decouples HTF inventories, operating pressures, and flow paths.
